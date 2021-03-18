@@ -1,6 +1,7 @@
 package com.payne.test;
 
 import org.apache.flink.api.java.tuple.Tuple2;
+import org.apache.flink.api.java.utils.ParameterTool;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.datastream.DataStreamSource;
 import org.apache.flink.streaming.api.datastream.SingleOutputStreamOperator;
@@ -17,6 +18,13 @@ public class StreamWordCount {
 
         String inPath = "D:\\Dev-Project\\Flink_Tutorial\\src\\main\\resources\\hello.txt";
         DataStreamSource<String> streamSource = env.readTextFile(inPath);
+
+//        ParameterTool fromArgs = ParameterTool.fromArgs(args); //从主函数参数取值 --host localhost --port 7777
+//        String host = fromArgs.get("host");
+//        int port = fromArgs.getInt("port");
+//        env.socketTextStream(host,port);
+//        env.socketTextStream("",7777); //nc -lk 7777
+
 
         DataStream<Tuple2<String, Integer>> streamOperator = streamSource.flatMap(new WordCount.myFlatFunctionMapper())
                 .keyBy(0)
