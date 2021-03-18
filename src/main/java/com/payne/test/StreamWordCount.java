@@ -13,7 +13,7 @@ public class StreamWordCount {
     public static void main(String[] args) throws Exception {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
 
-        env.setParallelism(4);//并行度
+        env.setParallelism(4);//并行度,默认为cpu的核数
 
         String inPath = "D:\\Dev-Project\\Flink_Tutorial\\src\\main\\resources\\hello.txt";
         DataStreamSource<String> streamSource = env.readTextFile(inPath);
