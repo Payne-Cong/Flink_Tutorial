@@ -16,6 +16,10 @@ public class Student {
         this.classes = classes;
     }
 
+    public static Student of(String id, String name, Integer source, String classes){
+        return new Student(id,name,source,classes);
+    }
+
     public Student(String name, Integer source) {
         this.name = name;
         this.source = source;
