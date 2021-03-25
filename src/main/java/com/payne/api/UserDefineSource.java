@@ -13,7 +13,7 @@ public class UserDefineSource implements SourceFunction<Student> {
     @Override
     public void run(SourceContext<Student> ctx) throws Exception {
         while (running){
-            ctx.collect(new Student(UUID.randomUUID().toString(),
+            ctx.collect(Student.of(UUID.randomUUID().toString(),
                     getRandomString(4),
                     new Random().nextInt(100),
                     getClasses()));
