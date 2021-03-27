@@ -1,5 +1,6 @@
 package com.payne.bean;
 
+import com.payne.api.UserDefineSource;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.datastream.DataStreamSource;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
@@ -19,6 +20,11 @@ public class TestDataStream {
             return Student.of(strings[0], strings[1], Integer.valueOf(strings[2]), strings[3]);
         });
         return operator;
+    }
+
+    public static DataStream<Student> getRandomDataStream(){
+        DataStreamSource<Student> userDefineSource = env.addSource(new UserDefineSource());
+        return  userDefineSource;
     }
 
     public static void execute() throws Exception {
